@@ -1,0 +1,21 @@
+@import 'flowbite/src/themes/default';
+@plugin "flowbite/plugin";
+@source "../node_modules/flowbite";
+@import 'tailwindcss';
+
+@theme {
+  --color-mainColor: #00298d;
+  --color-secondColor: #f0f2f5;
+}
+@utility container {
+  margin-inline: auto;
+}
+body {
+  font-family: 'Cairo', sans-serif;
+  background-color: var(--color-secondColor);
+}
+*,
+*::before,
+*::after {
+  --tw-ring-color: transparent;
+}

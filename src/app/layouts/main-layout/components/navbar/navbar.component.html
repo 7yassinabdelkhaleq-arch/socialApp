@@ -1,0 +1,139 @@
+<header class="sticky top-0 z-40 border-b border-slate-200/90 bg-white/95 backdrop-blur">
+  <div
+    class="mx-auto flex max-w-7xl items-center justify-between gap-2 px-2 py-1.5 sm:gap-3 sm:px-3"
+  >
+    <!-- Logo -->
+    <a routerLink="/timeline" class="flex shrink-0 items-center gap-3">
+      <img alt="Route Posts" class="h-9 w-9 rounded-xl object-cover" src="/assets/route.png" />
+      <p class="hidden text-xl font-extrabold text-slate-900 sm:block">Route Posts</p>
+    </a>
+    <!-- Navigation Links -->
+    <nav
+      class="flex min-w-0 items-center gap-1 overflow-x-auto rounded-2xl border border-slate-200 bg-slate-50/90 px-1 py-1 sm:px-1.5"
+    >
+      <!-- Feed -->
+      <a
+        routerLink="/timeline"
+        routerLinkActive="bg-white! text-[#1f6fe5]!"
+        class="relative flex shrink-0 items-center gap-1.5 rounded-xl px-2.5 py-2 text-sm font-extrabold text-slate-600 transition hover:bg-white/90 hover:text-slate-900 sm:gap-2 sm:px-3.5"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-house"
+          aria-hidden="true"
+        >
+          <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
+          <path
+            d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"
+          ></path>
+        </svg>
+        <span class="hidden sm:inline">Feed</span>
+        <span class="sr-only sm:hidden">Feed</span>
+      </a>
+      <!-- Profile -->
+      <a
+        routerLink="/profile"
+        routerLinkActive="bg-white! text-[#1f6fe5]!"
+        class="relative flex shrink-0 items-center gap-1.5 rounded-xl px-2.5 py-2 text-sm font-extrabold text-slate-600 transition hover:bg-white/90 hover:text-slate-900 sm:gap-2 sm:px-3.5"
+      >
+        <i class="fa-regular fa-user text-lg"></i>
+        <span class="hidden sm:inline">Profile</span>
+        <span class="sr-only sm:hidden">Profile</span>
+      </a>
+      <!-- Notifications -->
+      <a
+        routerLink="/notifications"
+        routerLinkActive="bg-white! text-[#1f6fe5]!"
+        class="relative flex shrink-0 items-center gap-1.5 rounded-xl px-2.5 py-2 text-sm font-extrabold text-slate-600 transition hover:bg-white/90 hover:text-slate-900 sm:gap-2 sm:px-3.5"
+      >
+        @if (unreadCount()) {
+          <span
+            class="absolute left-6 top-0 inline-flex min-w-[16px] items-center justify-center rounded-full bg-[#ef4444] px-1 text-[10px] font-black leading-4 text-white"
+            >{{ unreadCount() }}</span
+          >
+        }
+        <i class="fa-regular fa-comment text-lg"></i>
+        <span class="hidden sm:inline">Notifications</span>
+        <span class="sr-only sm:hidden">Notifications</span>
+      </a>
+    </nav>
+    <!-- User Menu -->
+    <div class="relative shrink-0">
+      <!-- User Button -->
+      <button
+        type="button"
+        id="user-menu-button"
+        aria-expanded="false"
+        data-dropdown-toggle="user-dropdown"
+        data-dropdown-placement="bottom-end"
+        class="flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-2 py-1.5 transition hover:bg-slate-100"
+      >
+        <img alt="User Photo" class="h-8 w-8 rounded-full object-cover" [src]="userInfo().photo" />
+        <span class="hidden max-w-35 truncate text-sm font-semibold text-slate-800 md:block">
+          {{ userInfo().name }}
+        </span>
+        <i class="fa-solid fa-bars text-sm text-slate-500"></i>
+      </button>
+      <!-- Dropdown Menu -->
+      <div
+        id="user-dropdown"
+        class="absolute right-0 z-50 mt-2 hidden w-52 rounded-xl border border-slate-200 bg-white p-2 shadow-lg"
+      >
+        <!-- Profile -->
+        <button
+          type="button"
+          routerLink="/profile"
+          class="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100"
+        >
+          <i class="fa-regular fa-user"></i>
+          Profile
+        </button>
+        <!-- Settings -->
+        <button
+          type="button"
+          routerLink="/change"
+          class="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-settings"
+            aria-hidden="true"
+          >
+            <path
+              d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"
+            ></path>
+            <circle cx="12" cy="12" r="3"></circle>
+          </svg>
+          Settings
+        </button>
+        <!-- Divider -->
+        <div class="my-1 border-t border-slate-200"></div>
+        <!-- Logout -->
+        <button
+          type="button"
+          (click)="logOut()"
+          class="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold text-rose-600 transition hover:bg-rose-50"
+        >
+          <i class="fa-solid fa-right-from-bracket"></i>
+          Logout
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
